@@ -152,4 +152,8 @@ function resetEmailView() {
   document.getElementById("emailView").classList.remove("show");
 }
 
+document.getElementById("toggleTheme").addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+});
+
 renderEmails();

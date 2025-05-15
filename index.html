@@ -12,17 +12,42 @@
 <body>
 
   <!-- Header -->
-  <header class="bg-white border-bottom d-flex justify-content-between align-items-center p-3 shadow-sm">
-    <div class="d-flex align-items-center gap-2">
-      <h5 class="m-0"><i class="bi bi-envelope-fill text-primary"></i> SimpleMail</h5>
-      <select class="form-select form-select-sm ms-3" id="userSelect">
-        <option value="Alice">Alice</option>
-        <option value="Bob">Bob</option>
-        <option value="Carol">Carol</option>
-      </select>
+  <header class="bg-white border-bottom p-3 shadow-sm">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <!-- Left: Brand and User Select -->
+      <div class="col-md-4 d-flex align-items-center gap-3">
+        <h5 class="m-0"><i class="bi bi-envelope-fill text-primary"></i> SimpleMail</h5>
+        <select class="form-select form-select-sm w-auto" id="userSelect">
+          <option value="Alice">Alice</option>
+          <option value="Bob">Bob</option>
+          <option value="Carol">Carol</option>
+        </select>
+      </div>
+
+      <!-- Center: Search -->
+      <div class="col-md-4">
+        <input type="search" class="form-control rounded-pill" placeholder="Search emails..." />
+      </div>
+
+      <!-- Right: Settings -->
+      <div class="col-md-4 d-flex justify-content-end align-items-center">
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            <i class="bi bi-gear-fill"></i> Settings
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+              <a class="dropdown-item" href="#" id="toggleTheme">
+                <i class="bi bi-moon"></i> Toggle Dark Mode
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <input type="search" class="form-control w-50 rounded-pill" placeholder="Search emails..." />
-  </header>
+  </div>
+</header>
 
   <!-- Main layout -->
   <div class="container-fluid">
