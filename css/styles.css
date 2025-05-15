@@ -1,9 +1,4 @@
-#messageList, #emailView {
-  max-height: calc(100vh - 70px);
-  overflow-y: auto;
-}
-
-#sidebar {
+#messageList, #emailView, #sidebar {
   max-height: calc(100vh - 70px);
   overflow-y: auto;
 }
@@ -14,7 +9,15 @@
   color: white;
 }
 
+.nav-link {
+  text-align: left;
+  font-size: 0.95rem;
+  color: #333;
+}
+.nav-link i {
+  margin-right: 6px;
+}
 .nav-link.active {
+  background-color: #e2e6ea;
   font-weight: bold;
-  background-color: #e9ecef;
 }
