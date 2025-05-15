@@ -1,32 +1,29 @@
-const emails = [
-  { id: 1, sender: "Bob", receiver: "Alice", subject: "Meeting Reminder", body: "Don't forget our meeting tomorrow at 10 AM.", tab: "Primary", starred: false },
-  { id: 2, sender: "LinkedIn", receiver: "Alice", subject: "New Connection Request", body: "You have a new connection request.", tab: "Social", starred: false },
-  { id: 3, sender: "Amazon", receiver: "Alice", subject: "Your Order Has Shipped", body: "Your order #12345 has been shipped.", tab: "Promotions", starred: false },
-  { id: 4, sender: "System", receiver: "Alice", subject: "Password Change", body: "Your password was changed successfully.", tab: "Updates", starred: false },
-  { id: 5, sender: "SpamSender", receiver: "Alice", subject: "You've won a prize!", body: "Click here to claim your prize.", tab: "Spam", starred: false },
-  { id: 6, sender: "Bob", receiver: "Alice", subject: "Old Project Files", body: "Here are the old project files you requested.", tab: "Trash", starred: false },
-  { id: 7, sender: "Carol", receiver: "Alice", subject: "Team Lunch", body: "Let's plan a team lunch next week.", tab: "Primary", starred: true },
-  { id: 8, sender: "Bob", receiver: "Alice", subject: "Project Update", body: "We finished the first milestone.", tab: "Primary", starred: false },
-  { id: 9, sender: "Carol", receiver: "Alice", subject: "Promo Offer", body: "50% off on design tools!", tab: "Promotions", starred: false },
-  { id: 10, sender: "System", receiver: "Alice", subject: "Welcome!", body: "Your SimpleMail account is ready.", tab: "Updates", starred: false }
-];
-
 let currentUser = "Alice";
 let currentTab = "Primary";
-let currentEmailId = null;
-let emailIdCounter = 4;
+let selectedEmailId = null;
+
+const emails = [
+  { id: 1, sender: "Bob", receiver: "Alice", subject: "Meeting Reminder", body: "Don't forget our meeting tomorrow.", tab: "Primary", starred: false },
+  { id: 2, sender: "LinkedIn", receiver: "Alice", subject: "New Connection", body: "Someone wants to connect.", tab: "Social", starred: false },
+  { id: 3, sender: "Amazon", receiver: "Alice", subject: "Order Shipped", body: "Your order has been shipped.", tab: "Promotions", starred: false },
+  { id: 4, sender: "System", receiver: "Alice", subject: "Password Changed", body: "Your password was updated.", tab: "Updates", starred: false },
+  { id: 5, sender: "SpamCo", receiver: "Alice", subject: "Win Big Now!", body: "Click to claim your prize!", tab: "Spam", starred: false },
+  { id: 6, sender: "Carol", receiver: "Alice", subject: "Lunch?", body: "Want to get lunch next week?", tab: "Bookmarks", starred: true },
+  { id: 7, sender: "Bob", receiver: "Carol", subject: "New Tasks", body: "Please check your new assignments.", tab: "Primary", starred: false }
+];
 
 function renderEmails() {
   const list = document.getElementById("emailList");
   list.innerHTML = "";
 
   const filtered = emails.filter(
-    email => email.receiver === currentUser && (email.tab === currentTab || (currentTab === "Bookmarks" && email.starred))
+    email => email.receiver === currentUser &&
+    (email.tab === currentTab || (currentTab === "Bookmarks" && email.starred))
   );
 
   if (filtered.length === 0) {
     const emptyMessage = document.createElement("li");
-    emptyMessage.className = "list-group-item text-center text-muted py-4";
+    emptyMessage.className = "list-group-item text-center text-muted py-4 fade-in";
     emptyMessage.innerHTML = `<i class="bi bi-inbox fs-4 d-block mb-2"></i>No emails in this folder.`;
     list.appendChild(emptyMessage);
     return;
@@ -34,7 +31,7 @@ function renderEmails() {
 
   filtered.forEach(email => {
     const item = document.createElement("li");
-    item.className = `list-group-item d-flex justify-content-between align-items-start email-item ${selectedEmailId === email.id ? 'active' : ''}`;
+    item.className = `list-group-item d-flex justify-content-between align-items-start email-item fade-in ${selectedEmailId === email.id ? 'active' : ''}`;
     item.dataset.id = email.id;
 
     item.innerHTML = `
@@ -43,11 +40,11 @@ function renderEmails() {
         <span class="small">${email.subject}</span>
       </div>
       <div>
-        ${email.starred ? '<i class="bi bi-star-fill text-warning"></i>' : '<i class="bi bi-star text-muted"></i>'}
+        <i class="star-toggle ${email.starred ? 'bi bi-star-fill text-warning' : 'bi bi-star text-muted'}"></i>
       </div>
     `;
 
-    item.querySelector(".bi-star, .bi-star-fill").addEventListener("click", (e) => {
+    item.querySelector(".star-toggle").addEventListener("click", (e) => {
       e.stopPropagation();
       email.starred = !email.starred;
       renderEmails();
@@ -72,6 +69,8 @@ function showEmail(id) {
   document.getElementById("bookmarkBtn").classList.remove("d-none");
   document.getElementById("replyBox").classList.add("d-none");
 
+  document.getElementById("emailView").classList.add("show");
+
   renderEmails();
 }
 
@@ -79,6 +78,7 @@ document.getElementById("userSelect").addEventListener("change", function () {
   currentUser = this.value;
   selectedEmailId = null;
   renderEmails();
+  resetEmailView();
 });
 
 document.querySelectorAll("#sidebar .nav-link").forEach(btn => {
@@ -89,6 +89,7 @@ document.querySelectorAll("#sidebar .nav-link").forEach(btn => {
     document.getElementById("tabTitle").textContent = `${currentTab} Inbox`;
     selectedEmailId = null;
     renderEmails();
+    resetEmailView();
   });
 });
 
@@ -99,7 +100,15 @@ document.getElementById("composeForm").addEventListener("submit", function (e) {
   const body = document.getElementById("composeBody").value;
 
   if (to && subject && body) {
-    emails.push({ id: Date.now(), sender: currentUser, receiver: to, subject, body, tab: "Primary", starred: false });
+    emails.push({
+      id: Date.now(),
+      sender: currentUser,
+      receiver: to,
+      subject,
+      body,
+      tab: "Primary",
+      starred: false
+    });
     renderEmails();
     this.reset();
     bootstrap.Modal.getInstance(document.getElementById("composeModal")).hide();
@@ -107,7 +116,11 @@ document.getElementById("composeForm").addEventListener("submit", function (e) {
 });
 
 document.getElementById("replyBtn").addEventListener("click", () => {
-  document.getElementById("replyBox").classList.toggle("d-none");
+  const replyBox = document.getElementById("replyBox");
+  replyBox.classList.toggle("d-none");
+  if (!replyBox.classList.contains("d-none")) {
+    replyBox.focus();
+  }
 });
 
 document.getElementById("deleteBtn").addEventListener("click", () => {
@@ -116,13 +129,7 @@ document.getElementById("deleteBtn").addEventListener("click", () => {
     email.tab = "Trash";
     selectedEmailId = null;
     renderEmails();
-    document.getElementById("emailSubject").textContent = "Select a message";
-    document.getElementById("emailSender").textContent = "";
-    document.getElementById("emailBody").textContent = "Click on a message to read it here.";
-    document.getElementById("replyBtn").classList.add("d-none");
-    document.getElementById("deleteBtn").classList.add("d-none");
-    document.getElementById("bookmarkBtn").classList.add("d-none");
-    document.getElementById("replyBox").classList.add("d-none");
+    resetEmailView();
   }
 });
 
@@ -133,5 +140,16 @@ document.getElementById("bookmarkBtn").addEventListener("click", () => {
     renderEmails();
   }
 });
+
+function resetEmailView() {
+  document.getElementById("emailSubject").textContent = "Select a message";
+  document.getElementById("emailSender").textContent = "";
+  document.getElementById("emailBody").textContent = "Click on a message to read it here.";
+  document.getElementById("replyBtn").classList.add("d-none");
+  document.getElementById("deleteBtn").classList.add("d-none");
+  document.getElementById("bookmarkBtn").classList.add("d-none");
+  document.getElementById("replyBox").classList.add("d-none");
+  document.getElementById("emailView").classList.remove("show");
+}
 
 renderEmails();

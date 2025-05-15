@@ -22,9 +22,6 @@
       </select>
     </div>
     <input type="search" class="form-control w-50 rounded-pill" placeholder="Search emails..." />
-    <button class="btn btn-outline-primary ms-2 rounded-pill" data-bs-toggle="modal" data-bs-target="#composeModal">
-      <i class="bi bi-pencil-square"></i> Compose
-    </button>
   </header>
 
   <!-- Main layout -->
@@ -33,6 +30,9 @@
 
       <!-- Sidebar -->
       <aside class="col-md-2 bg-light p-3" id="sidebar">
+        <button class="btn btn-primary w-100 mb-3" data-bs-toggle="modal" data-bs-target="#composeModal">
+          <i class="bi bi-pencil-fill"></i> Compose
+        </button>
         <ul class="nav flex-column nav-pills">
           <li class="nav-item"><button class="nav-link active" data-tab="Primary"><i class="bi bi-inbox"></i> Primary</button></li>
           <li class="nav-item"><button class="nav-link" data-tab="Social"><i class="bi bi-people"></i> Social</button></li>
