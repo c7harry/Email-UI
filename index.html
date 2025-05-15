@@ -3,25 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SimpleMail Concept</title>
+  <title>SimpleMail</title>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 
   <!-- Header -->
-  <header class="bg-primary text-white d-flex justify-content-between align-items-center p-3">
+  <header class="bg-white border-bottom d-flex justify-content-between align-items-center p-3 shadow-sm">
     <div class="d-flex align-items-center gap-2">
-      <h5 class="m-0"><i class="bi bi-envelope-fill"></i> SimpleMail</h5>
+      <h5 class="m-0"><i class="bi bi-envelope-fill text-primary"></i> SimpleMail</h5>
       <select class="form-select form-select-sm ms-3" id="userSelect">
         <option value="Alice">Alice</option>
         <option value="Bob">Bob</option>
         <option value="Carol">Carol</option>
       </select>
     </div>
-    <input type="search" class="form-control w-50" placeholder="Search emails..." />
-    <button class="btn btn-light ms-2" data-bs-toggle="modal" data-bs-target="#composeModal">
+    <input type="search" class="form-control w-50 rounded-pill" placeholder="Search emails..." />
+    <button class="btn btn-outline-primary ms-2 rounded-pill" data-bs-toggle="modal" data-bs-target="#composeModal">
       <i class="bi bi-pencil-square"></i> Compose
     </button>
   </header>
@@ -72,7 +73,12 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <input type="text" class="form-control mb-2" id="composeTo" placeholder="To" required />
+          <select class="form-select mb-2" id="composeTo" required>
+            <option value="" disabled selected>Select recipient</option>
+            <option value="Alice">Alice</option>
+            <option value="Bob">Bob</option>
+            <option value="Carol">Carol</option>
+          </select>
           <input type="text" class="form-control mb-2" id="composeSubject" placeholder="Subject" required />
           <textarea class="form-control" rows="5" id="composeBody" placeholder="Message..." required></textarea>
         </div>

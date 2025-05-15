@@ -1,3 +1,7 @@
+body {
+  font-family: 'Google Sans', sans-serif;
+}
+
 #messageList, #emailView, #sidebar {
   max-height: calc(100vh - 70px);
   overflow-y: auto;
@@ -20,4 +24,8 @@
 .nav-link.active {
   background-color: #e2e6ea;
   font-weight: bold;
+}
+
+.rounded-pill {
+  border-radius: 50rem !important;
 }
