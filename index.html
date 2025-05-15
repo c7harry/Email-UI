@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Email Template</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="bg-primary text-white py-2 px-3 d-flex justify-content-between align-items-center">
+    <h5 class="m-0">MyMail</h5>
+    <input type="search" class="form-control w-50" placeholder="Search emails..." />
+    <button class="btn btn-light ms-2">Compose</button>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container-fluid">
+    <div class="row flex-nowrap">
+
+      <!-- Sidebar (Folders) -->
+      <nav class="col-lg-2 col-md-3 col-sm-12 bg-light sidebar p-3">
+        <h6 class="mb-3">Folders</h6>
+        <ul class="list-group">
+          <li class="list-group-item">Inbox</li>
+          <li class="list-group-item">Sent</li>
+          <li class="list-group-item">Drafts</li>
+        </ul>
+      </nav>
+
+      <!-- Message List -->
+      <section class="col-lg-4 col-md-5 col-sm-12 p-3 border-start border-end message-list">
+        <h6 class="mb-3">Messages</h6>
+        <ul class="list-group">
+          <li class="list-group-item active">Alice - Meeting update</li>
+          <li class="list-group-item">Bob - Project feedback</li>
+          <li class="list-group-item">Carol - Invitation</li>
+        </ul>
+      </section>
+
+      <!-- Email View Panel -->
+      <section class="col-lg-6 col-md-4 col-sm-12 p-3 email-view">
+        <h5>Meeting Update</h5>
+        <p><strong>From:</strong> Alice</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi feugiat, turpis nec viverra tempus, sapien nisl vulputate orci, ac gravida mi nulla ut ante.</p>
+        <button class="btn btn-outline-primary mt-2">Reply</button>
+        <textarea class="form-control mt-3" rows="4" placeholder="Write your reply..."></textarea>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
