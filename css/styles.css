@@ -1,0 +1,20 @@
+#messageList, #emailView {
+  max-height: calc(100vh - 70px);
+  overflow-y: auto;
+}
+
+#sidebar {
+  max-height: calc(100vh - 70px);
+  overflow-y: auto;
+}
+
+.list-group-item.active {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  color: white;
+}
+
+.nav-link.active {
+  font-weight: bold;
+  background-color: #e9ecef;
+}
