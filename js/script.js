@@ -103,7 +103,7 @@ document.querySelectorAll("#sidebar .nav-link").forEach(btn => {
     document.querySelector("#sidebar .nav-link.active").classList.remove("active");
     btn.classList.add("active");
     currentTab = btn.dataset.tab;
-    document.getElementById("tabTitle").textContent = `${currentTab} Inbox`;
+    document.getElementById("tabTitle").textContent = `${currentTab}`;
     selectedEmailId = null;
     renderEmails();
     resetEmailView();

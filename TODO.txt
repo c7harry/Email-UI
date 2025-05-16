@@ -1,7 +1,3 @@
 1. Add functionality to search bar
 2. Make dark mode button dynamic
 4. Change theme of email website to something creative
-10. Add ability to attach attachments to emails
-
-Fix
-2. No emails in this folder message is still black in dark mode
