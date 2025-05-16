@@ -1,49 +1,67 @@
+/*  GLOBAL STYLES  */
+
+/* Set full height and remove default margins/padding */
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-size: 0.925rem;
+  font-size: 0.925rem; /* Slightly smaller base font size */
 }
 
+/* Make the main container fill the screen minus the header height */
 .container-fluid {
   height: calc(100% - 70px);
 }
 
+/* Make all rows take full height */
 .row {
   height: 100%;
 }
 
+/* Apply default font and smooth transition for color changes */
 body {
   font-family: 'Google Sans', sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* NAVIGATION & SIDEBAR */
+
+/* Hover effect for sidebar navigation links */
 .nav-pills .nav-link:hover {
   background-color: #e8f0fe;
   color: #1967d2;
 }
 
+/* Allow scrolling in message list, email view, and sidebar */
 #messageList, #emailView, #sidebar {
   max-height: calc(100vh - 70px);
   overflow-y: auto;
 }
 
+/* MESSAGE LIST */
+
+/* Style list items with transition and cursor pointer */
 .list-group-item {
   transition: background-color 0.3s ease, transform 0.3s ease;
   cursor: pointer;
 }
 
+/* Hover effect for message items */
 .list-group-item:hover {
   background-color: #f1f3f4;
   transform: translateX(5px);
 }
 
+/* Active message styling */
 .list-group-item.active {
   background-color: #0d6efd;
   border-color: #0d6efd;
   color: white;
 }
 
+/* NAV LINKS */
+
+/* Base nav link styling */
 .nav-link {
   text-align: left;
   font-size: 0.95rem;
@@ -51,128 +69,148 @@ body {
   transition: background-color 0.3s ease;
 }
 
+/* Styling for user dropdown */
 #userSelect {
   color: #333;
   background-color: #ffffff;
   border-color: #333;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='gray' class='bi bi-caret-down-fill' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.042 2.348 4 3.204 4h9.592c.856 0 1.319 1.042.753 1.658L8.753 11.14a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml..."); /* Custom arrow icon */
   background-repeat: no-repeat;
   background-position: right 0.5rem center;
   background-size: 1rem;
-  padding-right: 2rem;
+  padding-right: 2rem; /* Space for icon */
 }
 
+/* Space between nav icon and label */
 .nav-link i {
   margin-right: 6px;
 }
 
+/* Active nav link styling */
 .nav-link.active {
   background-color: #e2e6ea;
   font-weight: bold;
 }
 
+/* Full-rounded pill button class */
 .rounded-pill {
   border-radius: 50rem !important;
 }
 
+/* EMAIL VIEW TRANSITIONS */
+
+/* Hide email view by default with transition */
 #emailView {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
+/* Show email view */
 #emailView.show {
   opacity: 1;
 }
 
+/* Fade-in animation class */
 .fade-in {
   animation: fadeIn 0.3s ease-in-out;
 }
 
+/* Keyframes for fade-in */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== DARK MODE STYLING ===== */
+/* DARK MODE STYLES */
+
+/* Main body dark background and text color */
 body.dark-mode {
   background-color: #121212;
   color: #e4e4e4;
 }
 
-/* Header */
+/* Header styling for dark mode */
 body.dark-mode header {
   background-color: #1f1f1f !important;
   color: #e4e4e4 !important;
   border-bottom: 1px solid #333;
 }
 
+/* Search box inside header in dark mode */
 body.dark-mode header input[type="search"] {
   background-color: #2a2a2a;
   color: #e4e4e4;
   border-color: #444;
 }
 
+/* User dropdown styling for dark mode */
 body.dark-mode #userSelect {
   background-color: #2a2a2a;
   color: #e4e4e4;
   border-color: #444;
 }
 
-/* Sidebar */
+/* Sidebar dark styling */
 body.dark-mode #sidebar {
   background-color: #1f1f1f !important;
   color: #e4e4e4;
 }
 
+/* Sidebar links in dark mode */
 body.dark-mode #sidebar .nav-link {
   color: #ccc;
 }
 
+/* Active sidebar link in dark mode */
 body.dark-mode #sidebar .nav-link.active {
   background-color: #333;
   color: #fff;
 }
 
-/* Compose Button */
+/* Compose button in dark sidebar */
 body.dark-mode #sidebar .btn-primary {
   background-color: #0d6efd;
   border-color: #0d6efd;
 }
 
-/* Message list */
+/* Message list dark background */
 body.dark-mode #messageList {
   background-color: #1a1a1a;
   color: #e4e4e4;
 }
 
+/* List items in message list (dark mode) */
 body.dark-mode .list-group-item {
   background-color: #1f1f1f;
   color: #e4e4e4;
   border-color: #2c2c2c;
 }
 
+/* Hovered list item in dark mode */
 body.dark-mode .list-group-item:hover {
   background-color: #2a2a2a;
 }
 
+/* Active list item in dark mode */
 body.dark-mode .list-group-item.active {
   background-color: #0d6efd;
   color: white;
 }
 
-/* Email content view */
+/* Email view dark styling */
 body.dark-mode #emailView {
   background-color: #1f1f1f;
   color: #e4e4e4;
 }
 
+/* Email details in dark mode */
 body.dark-mode #emailSubject,
 body.dark-mode #emailSender,
 body.dark-mode #emailBody {
   color: #e4e4e4 !important;
 }
 
-/* Compose modal */
+/* Compose modal styling */
 body.dark-mode .modal-content {
   background-color: #2a2a2a;
   color: #e4e4e4;
@@ -183,18 +221,19 @@ body.dark-mode .modal-footer {
   border-color: #444;
 }
 
-/* Form controls */
+/* Inputs and forms in dark mode */
 body.dark-mode .form-control {
   background-color: #2a2a2a;
   color: #e4e4e4;
   border-color: #444;
 }
 
+/* Placeholder text in dark inputs */
 body.dark-mode .form-control::placeholder {
   color: #aaa;
 }
 
-/* Dropdown menu */
+/* Dropdown menus in dark mode */
 body.dark-mode .dropdown-menu {
   background-color: #2a2a2a;
 }
@@ -207,23 +246,18 @@ body.dark-mode .dropdown-item:hover {
   background-color: #3a3a3a;
 }
 
-/* Buttons */
+/* Button color overrides for dark mode */
 body.dark-mode .btn {
   color: #ddd;
 }
 
-body.dark-mode .btn-outline-primary {
-  border-color: #666;
-}
-
-body.dark-mode .btn-outline-danger {
-  border-color: #666;
-}
-
+body.dark-mode .btn-outline-primary,
+body.dark-mode .btn-outline-danger,
 body.dark-mode .btn-outline-warning {
   border-color: #666;
 }
 
+/* Email attachment and star icons in dark mode */
 body.dark-mode #emailAttachment {
   color: #e4e4e4 !important;
 }
@@ -233,31 +267,38 @@ body.dark-mode .bi-star-fill {
   color: #fff !important;
 }
 
+/* Empty message text in dark mode */
 body.dark-mode #emptyMessage {
   color: #fff !important;
 }
 
+/* User dropdown with white arrow in dark mode */
 body.dark-mode select#userSelect {
   color: #fff;
   background-color: #2a2a2a;
   border-color: #444;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-caret-down-fill' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.042 2.348 4 3.204 4h9.592c.856 0 1.319 1.042.753 1.658L8.753 11.14a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml..."); /* white arrow icon */
   background-repeat: no-repeat;
   background-position: right 0.5rem center;
   background-size: 1rem;
-  padding-right: 2rem; /* space for arrow */
+  padding-right: 2rem;
 }
 
+/* MOBILE STYLES */
+
 @media (max-width: 768px) {
+  /* Narrow sidebar on small screens */
   #mobileSidebar {
     width: 180px !important;
   }
 
+  /* Dimmed backdrop for offcanvas menu */
   .offcanvas-backdrop.show {
     opacity: 0.4;
   }
 }
 
+/* Dark mode for offcanvas mobile menu */
 body.dark-mode .offcanvas {
   background-color: #1e1e1e;
   color: #f1f1f1;

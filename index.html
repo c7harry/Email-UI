@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Basic page setup -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CraftMail</title>
+
+  <!-- Fonts and stylesheets -->
   <link href="https://fonts.googleapis.com/css2?family=Google+Sans&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
@@ -11,26 +14,27 @@
 </head>
 <body>
 
-<!-- Header -->
+<!-- Header section with app name, search bar, and user selection -->
 <header class="bg-white border-bottom p-2 shadow-sm">
   <div class="container-fluid">
     <div class="row align-items-center">
-      <!-- Brand (centered on mobile) -->
+
+      <!-- App name (shown centered on small screens) -->
       <div class="col-12 text-center d-md-none mb-2">
         <h5 class="m-0"><i class="bi bi-envelope-fill text-primary"></i> CraftMail</h5>
       </div>
 
-      <!-- Main Controls Row (mobile only) -->
+      <!-- Controls for mobile: sidebar toggle, search, and user dropdown -->
       <div class="col-12 d-flex align-items-center gap-2 d-md-none mb-2">
-        <!-- Sidebar Toggle (mobile only) -->
+        <!-- Toggle button for sidebar on mobile -->
         <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
           <i class="bi bi-list"></i>
         </button>
 
-        <!-- Search Bar -->
+        <!-- Search input -->
         <input type="search" class="form-control rounded-pill flex-grow-1" placeholder="Search emails..." />
 
-        <!-- User Select -->
+        <!-- User selection dropdown -->
         <select class="form-select form-select-sm" style="width: auto;" id="userSelect">
           <option value="Alice">Alice</option>
           <option value="Bob">Bob</option>
@@ -38,7 +42,7 @@
         </select>
       </div>
 
-      <!-- Desktop Header -->
+      <!-- Desktop: app name and user selection -->
       <div class="col-md-4 d-none d-md-flex align-items-center gap-3">
         <h5 class="m-0"><i class="bi bi-envelope-fill text-primary"></i> CraftMail</h5>
         <select class="form-select form-select-sm w-auto" id="userSelect">
@@ -48,10 +52,12 @@
         </select>
       </div>
 
+      <!-- Desktop: search bar -->
       <div class="col-md-4 d-none d-md-block">
         <input type="search" class="form-control rounded-pill" placeholder="Search emails..." />
       </div>
 
+      <!-- Desktop: settings dropdown -->
       <div class="col-md-4 d-none d-md-flex justify-content-end align-items-center">
         <div class="dropdown">
           <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
@@ -70,16 +76,19 @@
   </div>
 </header>
 
-<!-- Sidebar for Mobile -->
+<!-- Sidebar menu for mobile devices (off-canvas) -->
 <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title">   </h5>
+    <h5 class="offcanvas-title"></h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
   </div>
   <div class="offcanvas-body">
+    <!-- Compose button -->
     <button class="btn btn-primary w-100 mb-3" data-bs-toggle="modal" data-bs-target="#composeModal">
       <i class="bi bi-pencil-fill"></i> Compose
     </button>
+
+    <!-- Folder tabs -->
     <ul class="nav flex-column nav-pills">
       <li class="nav-item"><button class="nav-link" data-tab="Bookmarks"><i class="bi bi-star-fill"></i> Bookmarks</button></li>
       <li class="nav-item"><button class="nav-link active" data-tab="Primary"><i class="bi bi-inbox"></i> Primary</button></li>
@@ -89,6 +98,8 @@
       <li class="nav-item"><button class="nav-link" data-tab="Spam"><i class="bi bi-exclamation-octagon"></i> Spam</button></li>
       <li class="nav-item"><button class="nav-link" data-tab="Trash"><i class="bi bi-trash"></i> Trash</button></li>
     </ul>
+
+    <!-- Mobile settings menu -->
     <div class="dropdown mb-3">
       <button class="btn btn-outline-secondary w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown">
         <i class="bi bi-gear-fill"></i> Settings
@@ -104,15 +115,18 @@
   </div>
 </div>
 
-<!-- Main layout -->
+<!-- Main layout using Bootstrap grid -->
 <div class="container-fluid">
   <div class="row">
 
-    <!-- Sidebar -->
+    <!-- Sidebar for desktop -->
     <aside class="col-md-2 bg-light p-3 d-none d-md-block" id="sidebar">
+      <!-- Compose button -->
       <button class="btn btn-primary w-100 mb-3" data-bs-toggle="modal" data-bs-target="#composeModal">
         <i class="bi bi-pencil-fill"></i> Compose
       </button>
+
+      <!-- Email category tabs -->
       <ul class="nav flex-column nav-pills">
         <li class="nav-item"><button class="nav-link" data-tab="Bookmarks"><i class="bi bi-star-fill"></i> Bookmarks</button></li>
         <li class="nav-item"><button class="nav-link active" data-tab="Primary"><i class="bi bi-inbox"></i> Primary</button></li>
@@ -124,29 +138,33 @@
       </ul>
     </aside>
 
-    <!-- Message List -->
+    <!-- Message list panel -->
     <section class="col-md-4 p-3 border-end" id="messageList">
       <h6 id="tabTitle">Primary</h6>
-      <ul class="list-group" id="emailList"></ul>
+      <ul class="list-group" id="emailList"></ul> <!-- List of email previews will be inserted here -->
     </section>
 
-    <!-- Email View -->
+    <!-- Email reading panel -->
     <section class="col-md-6 p-3" id="emailView">
       <h5 id="emailSubject">Select a message</h5>
       <p><strong id="emailSender"></strong></p>
       <p id="emailBody" class="mt-2 text-muted">Click on a message to read it here.</p>
       <div id="emailAttachment" class="mt-2 text-muted small d-none"></div>
+
+      <!-- Email action buttons (shown when an email is selected) -->
       <button class="btn btn-outline-primary mt-2 d-none" id="replyBtn">Reply</button>
       <button class="btn btn-outline-danger mt-2 d-none" id="deleteBtn">Delete</button>
       <button class="btn btn-outline-warning mt-2 d-none" id="bookmarkBtn"><i class="bi bi-star"></i> Bookmark</button>
       <button class="btn btn-outline-success mt-2 d-none" id="restoreBtn"><i class="bi bi-arrow-counterclockwise"></i> Restore</button>
+
+      <!-- Reply text area -->
       <textarea class="form-control mt-3 d-none" rows="4" id="replyBox" placeholder="Write your reply..."></textarea>
     </section>
 
   </div>
 </div>
 
-<!-- Compose Modal -->
+<!-- Modal for composing a new email -->
 <div class="modal fade" id="composeModal" tabindex="-1" aria-labelledby="composeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-md">
     <form class="modal-content" id="composeForm">
@@ -155,19 +173,26 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
+        <!-- Recipient selection -->
         <select class="form-select mb-2" id="composeTo" required>
           <option value="" disabled selected>Select recipient</option>
           <option value="Alice">Alice</option>
           <option value="Bob">Bob</option>
           <option value="Carol">Carol</option>
         </select>
+
+        <!-- Subject and message body -->
         <input type="text" class="form-control mb-2" id="composeSubject" placeholder="Subject" required />
         <textarea class="form-control" rows="5" id="composeBody" placeholder="Message..." required></textarea>
       </div>
+
+      <!-- File attachment -->
       <div class="mb-3 px-3">
         <label for="composeAttachment" class="form-label">Attachment</label>
         <input type="file" class="form-control" id="composeAttachment" accept="image/*,application/pdf,text/plain">
       </div>
+
+      <!-- Form action buttons -->
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Send</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -176,6 +201,7 @@
   </div>
 </div>
 
+<!-- JavaScript: Bootstrap + App logic -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/script.js"></script>
 </body>
