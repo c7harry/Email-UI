@@ -257,3 +257,29 @@ body.dark-mode select#userSelect {
     opacity: 0.4;
   }
 }
+
+body.dark-mode .offcanvas {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+
+body.dark-mode .offcanvas .nav-link {
+  color: #f1f1f1;
+}
+
+body.dark-mode .offcanvas .nav-link.active {
+  background-color: #2a2a2a;
+}
+
+body.dark-mode .offcanvas .btn,
+body.dark-mode .offcanvas .dropdown-toggle,
+body.dark-mode .offcanvas .dropdown-menu {
+  background-color: #2c2c2c;
+  color: #f1f1f1;
+  border-color: #444;
+}
+
+body.dark-mode .offcanvas .btn:hover,
+body.dark-mode .offcanvas .dropdown-item:hover {
+  background-color: #3a3a3a;
+}
