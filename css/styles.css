@@ -2,6 +2,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-size: 0.925rem;
 }
 
 .container-fluid {
@@ -15,6 +16,11 @@ html, body {
 body {
   font-family: 'Google Sans', sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-pills .nav-link:hover {
+  background-color: #e8f0fe;
+  color: #1967d2;
 }
 
 #messageList, #emailView, #sidebar {
