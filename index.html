@@ -80,6 +80,7 @@
         <h5 id="emailSubject">Select a message</h5>
         <p><strong id="emailSender"></strong></p>
         <p id="emailBody" class="mt-2 text-muted">Click on a message to read it here.</p>
+        <div id="emailAttachment" class="mt-2 text-muted small d-none"></div>
         <button class="btn btn-outline-primary mt-2 d-none" id="replyBtn">Reply</button>
         <button class="btn btn-outline-danger mt-2 d-none" id="deleteBtn">Delete</button>
         <button class="btn btn-outline-warning mt-2 d-none" id="bookmarkBtn"><i class="bi bi-star"></i> Bookmark</button>
@@ -107,6 +108,10 @@
           </select>
           <input type="text" class="form-control mb-2" id="composeSubject" placeholder="Subject" required />
           <textarea class="form-control" rows="5" id="composeBody" placeholder="Message..." required></textarea>
+        </div>
+         <div class="mb-3">
+          <label for="composeAttachment" class="form-label">Attachment</label>
+          <input type="file" class="form-control" id="composeAttachment">
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Send</button>

@@ -64,6 +64,16 @@ function showEmail(id) {
   document.getElementById("emailSender").textContent = `From: ${email.sender}`;
   document.getElementById("emailBody").textContent = email.body;
 
+  // Handle attachment
+  const attachmentBox = document.getElementById("emailAttachment");
+  if (email.attachment) {
+    attachmentBox.classList.remove("d-none");
+    attachmentBox.innerHTML = `<i class="bi bi-paperclip me-1"></i> ${email.attachment}`;
+  } else {
+    attachmentBox.classList.add("d-none");
+    attachmentBox.innerHTML = "";
+  }
+
   const isTrash = email.tab === "Trash";
 
   document.getElementById("replyBtn").classList.toggle("d-none", isTrash);
@@ -101,6 +111,8 @@ document.getElementById("composeForm").addEventListener("submit", function (e) {
   const to = document.getElementById("composeTo").value;
   const subject = document.getElementById("composeSubject").value;
   const body = document.getElementById("composeBody").value;
+  const attachmentInput = document.getElementById("composeAttachment");
+  const attachment = attachmentInput.files[0] ? attachmentInput.files[0].name : null;
 
   if (to && subject && body) {
     emails.push({
@@ -110,7 +122,8 @@ document.getElementById("composeForm").addEventListener("submit", function (e) {
       subject,
       body,
       tab: "Primary",
-      starred: false
+      starred: false,
+      attachment
     });
     renderEmails();
     this.reset();
