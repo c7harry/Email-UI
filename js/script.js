@@ -24,7 +24,7 @@ function renderEmails() {
   if (filtered.length === 0) {
     const emptyMessage = document.createElement("li");
     emptyMessage.className = "list-group-item text-center text-muted py-4 fade-in";
-    emptyMessage.innerHTML = `<i class="bi bi-inbox fs-4 d-block mb-2"></i>No emails in this folder.`;
+    emptyMessage.innerHTML = `<div id="emptyMessage"><i class="bi bi-inbox fs-4 d-block mb-2"></i>No emails in this folder.</div>`;
     list.appendChild(emptyMessage);
     return;
   }

@@ -215,3 +215,7 @@ body.dark-mode .bi-star,
 body.dark-mode .bi-star-fill {
   color: #fff !important;
 }
+
+body.dark-mode #emptyMessage {
+  color: #fff !important;
+}
