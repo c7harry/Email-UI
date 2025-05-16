@@ -12,27 +12,31 @@
 <body>
 
   <!-- Header -->
-  <header class="bg-white border-bottom p-3 shadow-sm">
+  <header class="bg-white border-bottom p-2 shadow-sm">
     <div class="container-fluid">
-      <div class="row align-items-center g-2 flex-column flex-md-row">
-        <!-- Left: Brand and User Select -->
-        <div class="col d-flex align-items-center gap-3">
+      <div class="row align-items-center">
+        <!-- Brand and Toggle -->
+        <div class="col-6 col-md-4 d-flex align-items-center gap-2">
+          <button class="btn btn-outline-secondary d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+            <i class="bi bi-list"></i>
+          </button>
           <h5 class="m-0"><i class="bi bi-envelope-fill text-primary"></i> CraftMail</h5>
-          <select class="form-select form-select-sm w-auto" id="userSelect">
+        </div>
+
+        <!-- Search -->
+        <div class="col-12 col-md-4 my-2 my-md-0">
+          <input type="search" class="form-control rounded-pill" placeholder="Search emails..." />
+        </div>
+
+        <!-- User and Settings -->
+        <div class="col-6 col-md-4 d-flex justify-content-end align-items-center">
+          <select class="form-select form-select-sm w-auto me-2" id="userSelect">
             <option value="Alice">Alice</option>
             <option value="Bob">Bob</option>
             <option value="Carol">Carol</option>
           </select>
-        </div>
-
-        <!-- Center: Search -->
-        <div class="col">
-          <input type="search" class="form-control rounded-pill w-100" placeholder="Search emails..." />
-        </div>
-
-        <!-- Right: Settings -->
-        <div class="col d-flex justify-content-md-end align-items-center">
-          <div class="dropdown">
+          <!-- Settings dropdown (visible on md+) -->
+          <div class="dropdown d-none d-md-block">
             <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
               <i class="bi bi-gear-fill"></i> Settings
             </button>
@@ -49,24 +53,17 @@
     </div>
   </header>
 
-  <!-- Mobile Sidebar Toggle -->
-  <div class="d-md-none p-2 bg-light border-bottom">
-    <button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
-      <i class="bi bi-list"></i> Menu
-    </button>
-  </div>
-
-  <!-- Mobile Offcanvas Sidebar -->
+  <!-- Mobile Sidebar -->
   <div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="mobileSidebar">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title"><i class="bi bi-envelope-fill text-primary"></i> CraftMail</h5>
+      <h5 class="offcanvas-title">CraftMail</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
     </div>
     <div class="offcanvas-body">
       <button class="btn btn-primary w-100 mb-3" data-bs-toggle="modal" data-bs-target="#composeModal">
         <i class="bi bi-pencil-fill"></i> Compose
       </button>
-      <ul class="nav flex-column nav-pills">
+      <ul class="nav flex-column nav-pills mb-3">
         <li class="nav-item"><button class="nav-link" data-tab="Bookmarks"><i class="bi bi-star-fill"></i> Bookmarks</button></li>
         <li class="nav-item"><button class="nav-link active" data-tab="Primary"><i class="bi bi-inbox"></i> Primary</button></li>
         <li class="nav-item"><button class="nav-link" data-tab="Social"><i class="bi bi-people"></i> Social</button></li>
@@ -75,14 +72,27 @@
         <li class="nav-item"><button class="nav-link" data-tab="Spam"><i class="bi bi-exclamation-octagon"></i> Spam</button></li>
         <li class="nav-item"><button class="nav-link" data-tab="Trash"><i class="bi bi-trash"></i> Trash</button></li>
       </ul>
+      <!-- Settings dropdown (mobile only) -->
+      <div class="dropdown">
+        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown">
+          <i class="bi bi-gear-fill"></i> Settings
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item" href="#" id="toggleTheme">
+              <i class="bi bi-moon"></i> Toggle Dark Mode
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 
-  <!-- Main Layout -->
+  <!-- Main layout -->
   <div class="container-fluid">
     <div class="row">
 
-      <!-- Desktop Sidebar -->
+      <!-- Sidebar -->
       <aside class="col-md-2 bg-light p-3 d-none d-md-block" id="sidebar">
         <button class="btn btn-primary w-100 mb-3" data-bs-toggle="modal" data-bs-target="#composeModal">
           <i class="bi bi-pencil-fill"></i> Compose
@@ -99,13 +109,13 @@
       </aside>
 
       <!-- Message List -->
-      <section class="col-12 col-md-4 p-3 border-end" id="messageList">
-        <h6 id="tabTitle">Primary </h6>
+      <section class="col-md-4 p-3 border-end" id="messageList">
+        <h6 id="tabTitle">Primary</h6>
         <ul class="list-group" id="emailList"></ul>
       </section>
 
       <!-- Email View -->
-      <section class="col-12 col-md-6 p-3" id="emailView">
+      <section class="col-md-6 p-3" id="emailView">
         <h5 id="emailSubject">Select a message</h5>
         <p><strong id="emailSender"></strong></p>
         <p id="emailBody" class="mt-2 text-muted">Click on a message to read it here.</p>
