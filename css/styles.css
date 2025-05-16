@@ -196,3 +196,8 @@ body.dark-mode .btn-outline-warning {
 body.dark-mode #emailAttachment {
   color: #e4e4e4 !important;
 }
+
+body.dark-mode .bi-star,
+body.dark-mode .bi-star-fill {
+  color: #fff !important;
+}
