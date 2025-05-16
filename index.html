@@ -20,22 +20,22 @@
         <h5 class="m-0"><i class="bi bi-envelope-fill text-primary"></i> CraftMail</h5>
       </div>
 
-      <!-- Main Controls Row -->
-      <div class="col-12 d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2 d-md-none">
+      <!-- Main Controls Row (mobile only) -->
+      <div class="col-12 d-flex align-items-center gap-2 d-md-none mb-2">
         <!-- Sidebar Toggle (mobile only) -->
         <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
           <i class="bi bi-list"></i>
         </button>
 
+        <!-- Search Bar -->
+        <input type="search" class="form-control rounded-pill flex-grow-1" placeholder="Search emails..." />
+
         <!-- User Select -->
-        <select class="form-select form-select-sm w-auto" id="userSelect">
+        <select class="form-select form-select-sm" style="width: auto;" id="userSelect">
           <option value="Alice">Alice</option>
           <option value="Bob">Bob</option>
           <option value="Carol">Carol</option>
         </select>
-
-        <!-- Search Bar -->
-        <input type="search" class="form-control rounded-pill flex-grow-1" placeholder="Search emails..." />
       </div>
 
       <!-- Desktop Header -->
