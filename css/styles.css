@@ -247,3 +247,13 @@ body.dark-mode select#userSelect {
   background-size: 1rem;
   padding-right: 2rem; /* space for arrow */
 }
+
+@media (max-width: 768px) {
+  #mobileSidebar {
+    width: 180px !important; /* or any width you prefer */
+  }
+
+  .offcanvas-backdrop.show {
+    opacity: 0.4; /* Optional: make backdrop slightly more transparent */
+  }
+}
