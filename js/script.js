@@ -64,9 +64,12 @@ function showEmail(id) {
   document.getElementById("emailSender").textContent = `From: ${email.sender}`;
   document.getElementById("emailBody").textContent = email.body;
 
-  document.getElementById("replyBtn").classList.remove("d-none");
-  document.getElementById("deleteBtn").classList.remove("d-none");
-  document.getElementById("bookmarkBtn").classList.remove("d-none");
+  const isTrash = email.tab === "Trash";
+
+  document.getElementById("replyBtn").classList.toggle("d-none", isTrash);
+  document.getElementById("deleteBtn").classList.toggle("d-none", isTrash);
+  document.getElementById("bookmarkBtn").classList.toggle("d-none", isTrash);
+  document.getElementById("restoreBtn").classList.toggle("d-none", !isTrash);
   document.getElementById("replyBox").classList.add("d-none");
 
   document.getElementById("emailView").classList.add("show");
@@ -126,7 +129,19 @@ document.getElementById("replyBtn").addEventListener("click", () => {
 document.getElementById("deleteBtn").addEventListener("click", () => {
   const email = emails.find(e => e.id === selectedEmailId);
   if (email) {
+    email.previousTab = email.tab;  // Track where it was before deletion
     email.tab = "Trash";
+    selectedEmailId = null;
+    renderEmails();
+    resetEmailView();
+  }
+});
+
+document.getElementById("restoreBtn").addEventListener("click", () => {
+  const email = emails.find(e => e.id === selectedEmailId);
+  if (email) {
+    email.tab = email.previousTab || "Primary";
+    delete email.previousTab;  // Clean up
     selectedEmailId = null;
     renderEmails();
     resetEmailView();

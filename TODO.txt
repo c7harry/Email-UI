@@ -1,10 +1,8 @@
 1. Add functionality to search bar
 2. Make dark mode button dynamic
-3. Fix background color between theme switches
 4. Change theme of email website to something creative
 5. Add ability to restore email from trash.
 6. Make compose pop-up centered on screen.
 7. Add ability to permanently delete mail from trash (empty trash button)
 8. Don't show bookmark button in trash
-9. Add ability to restore emails from trash
 10. Add ability to attach attachments to emails
