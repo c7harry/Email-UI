@@ -110,6 +110,22 @@ document.querySelectorAll("#sidebar .nav-link").forEach(btn => {
   });
 });
 
+document.querySelectorAll("#mobileSidebar .nav-link").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".nav-link").forEach(el => el.classList.remove("active"));
+
+    currentTab = btn.dataset.tab;
+    document.getElementById("tabTitle").textContent = currentTab;
+    selectedEmailId = null;
+    renderEmails();
+    resetEmailView();
+    btn.classList.add("active");
+
+    const offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById("mobileSidebar"));
+    if (offcanvas) offcanvas.hide();
+  });
+});
+
 document.getElementById("composeForm").addEventListener("submit", function (e) {
   e.preventDefault();
   const to = document.getElementById("composeTo").value;
