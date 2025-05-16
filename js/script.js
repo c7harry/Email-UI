@@ -64,18 +64,22 @@ function showEmail(id) {
   document.getElementById("emailSender").textContent = `From: ${email.sender}`;
   document.getElementById("emailBody").textContent = email.body;
 
-  // Handle attachment
   const attachmentBox = document.getElementById("emailAttachment");
   if (email.attachment) {
+    let attachmentHTML = `<i class="bi bi-paperclip me-1"></i> ${email.attachment.name}`;
+
+    if (email.attachment.preview && email.attachment.type.startsWith("image/")) {
+      attachmentHTML += `<div class="mt-2"><img src="${email.attachment.preview}" alt="Attachment" class="img-fluid rounded shadow-sm" style="max-height: 300px;"></div>`;
+    }
+
     attachmentBox.classList.remove("d-none");
-    attachmentBox.innerHTML = `<i class="bi bi-paperclip me-1"></i> ${email.attachment}`;
+    attachmentBox.innerHTML = attachmentHTML;
   } else {
     attachmentBox.classList.add("d-none");
     attachmentBox.innerHTML = "";
   }
 
   const isTrash = email.tab === "Trash";
-
   document.getElementById("replyBtn").classList.toggle("d-none", isTrash);
   document.getElementById("deleteBtn").classList.toggle("d-none", isTrash);
   document.getElementById("bookmarkBtn").classList.toggle("d-none", isTrash);
@@ -112,10 +116,10 @@ document.getElementById("composeForm").addEventListener("submit", function (e) {
   const subject = document.getElementById("composeSubject").value;
   const body = document.getElementById("composeBody").value;
   const attachmentInput = document.getElementById("composeAttachment");
-  const attachment = attachmentInput.files[0] ? attachmentInput.files[0].name : null;
+  const file = attachmentInput.files[0];
 
   if (to && subject && body) {
-    emails.push({
+    const newEmail = {
       id: Date.now(),
       sender: currentUser,
       receiver: to,
@@ -123,9 +127,29 @@ document.getElementById("composeForm").addEventListener("submit", function (e) {
       body,
       tab: "Primary",
       starred: false,
-      attachment
-    });
+    };
+
+    if (file) {
+  newEmail.attachment = {
+    name: file.name,
+    type: file.type
+  };
+
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    if (file.type.startsWith("image/")) {
+      newEmail.attachment.preview = e.target.result;
+    }
+
+    emails.push(newEmail);
     renderEmails();
+      };
+      reader.readAsDataURL(file);
+    } else {
+      emails.push(newEmail);
+      renderEmails();
+    }
+
     this.reset();
     bootstrap.Modal.getInstance(document.getElementById("composeModal")).hide();
   }
