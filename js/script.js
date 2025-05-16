@@ -224,4 +224,9 @@ document.getElementById("toggleTheme").addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 });
 
+document.getElementById("toggleThemeMobile").addEventListener("click", function (e) {
+  e.preventDefault();
+  document.getElementById("toggleTheme").click();
+});
+
 renderEmails();

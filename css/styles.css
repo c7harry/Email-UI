@@ -250,10 +250,10 @@ body.dark-mode select#userSelect {
 
 @media (max-width: 768px) {
   #mobileSidebar {
-    width: 180px !important; /* or any width you prefer */
+    width: 180px !important;
   }
 
   .offcanvas-backdrop.show {
-    opacity: 0.4; /* Optional: make backdrop slightly more transparent */
+    opacity: 0.4;
   }
 }
