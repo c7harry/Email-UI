@@ -13,48 +13,77 @@
 
   <!-- Header -->
   <header class="bg-white border-bottom p-3 shadow-sm">
-  <div class="container-fluid">
-    <div class="row align-items-center">
-      <!-- Left: Brand and User Select -->
-      <div class="col-md-4 d-flex align-items-center gap-3">
-        <h5 class="m-0"><i class="bi bi-envelope-fill text-primary"></i> CraftMail</h5>
-        <select class="form-select form-select-sm w-auto" id="userSelect">
-          <option value="Alice">Alice</option>
-          <option value="Bob">Bob</option>
-          <option value="Carol">Carol</option>
-        </select>
-      </div>
+    <div class="container-fluid">
+      <div class="row align-items-center g-2 flex-column flex-md-row">
+        <!-- Left: Brand and User Select -->
+        <div class="col d-flex align-items-center gap-3">
+          <h5 class="m-0"><i class="bi bi-envelope-fill text-primary"></i> CraftMail</h5>
+          <select class="form-select form-select-sm w-auto" id="userSelect">
+            <option value="Alice">Alice</option>
+            <option value="Bob">Bob</option>
+            <option value="Carol">Carol</option>
+          </select>
+        </div>
 
-      <!-- Center: Search -->
-      <div class="col-md-4">
-        <input type="search" class="form-control rounded-pill" placeholder="Search emails..." />
-      </div>
+        <!-- Center: Search -->
+        <div class="col">
+          <input type="search" class="form-control rounded-pill w-100" placeholder="Search emails..." />
+        </div>
 
-      <!-- Right: Settings -->
-      <div class="col-md-4 d-flex justify-content-end align-items-center">
-        <div class="dropdown">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-            <i class="bi bi-gear-fill"></i> Settings
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li>
-              <a class="dropdown-item" href="#" id="toggleTheme">
-                <i class="bi bi-moon"></i> Toggle Dark Mode
-              </a>
-            </li>
-          </ul>
+        <!-- Right: Settings -->
+        <div class="col d-flex justify-content-md-end align-items-center">
+          <div class="dropdown">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+              <i class="bi bi-gear-fill"></i> Settings
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item" href="#" id="toggleTheme">
+                  <i class="bi bi-moon"></i> Toggle Dark Mode
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 
-  <!-- Main layout -->
+  <!-- Mobile Sidebar Toggle -->
+  <div class="d-md-none p-2 bg-light border-bottom">
+    <button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+      <i class="bi bi-list"></i> Menu
+    </button>
+  </div>
+
+  <!-- Mobile Offcanvas Sidebar -->
+  <div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="mobileSidebar">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title"><i class="bi bi-envelope-fill text-primary"></i> CraftMail</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <button class="btn btn-primary w-100 mb-3" data-bs-toggle="modal" data-bs-target="#composeModal">
+        <i class="bi bi-pencil-fill"></i> Compose
+      </button>
+      <ul class="nav flex-column nav-pills">
+        <li class="nav-item"><button class="nav-link" data-tab="Bookmarks"><i class="bi bi-star-fill"></i> Bookmarks</button></li>
+        <li class="nav-item"><button class="nav-link active" data-tab="Primary"><i class="bi bi-inbox"></i> Primary</button></li>
+        <li class="nav-item"><button class="nav-link" data-tab="Social"><i class="bi bi-people"></i> Social</button></li>
+        <li class="nav-item"><button class="nav-link" data-tab="Promotions"><i class="bi bi-tags"></i> Promotions</button></li>
+        <li class="nav-item"><button class="nav-link" data-tab="Updates"><i class="bi bi-bell"></i> Updates</button></li>
+        <li class="nav-item"><button class="nav-link" data-tab="Spam"><i class="bi bi-exclamation-octagon"></i> Spam</button></li>
+        <li class="nav-item"><button class="nav-link" data-tab="Trash"><i class="bi bi-trash"></i> Trash</button></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Main Layout -->
   <div class="container-fluid">
     <div class="row">
 
-      <!-- Sidebar -->
-      <aside class="col-md-2 bg-light p-3" id="sidebar">
+      <!-- Desktop Sidebar -->
+      <aside class="col-md-2 bg-light p-3 d-none d-md-block" id="sidebar">
         <button class="btn btn-primary w-100 mb-3" data-bs-toggle="modal" data-bs-target="#composeModal">
           <i class="bi bi-pencil-fill"></i> Compose
         </button>
@@ -70,13 +99,13 @@
       </aside>
 
       <!-- Message List -->
-      <section class="col-md-4 p-3 border-end" id="messageList">
+      <section class="col-12 col-md-4 p-3 border-end" id="messageList">
         <h6 id="tabTitle">Primary </h6>
         <ul class="list-group" id="emailList"></ul>
       </section>
 
       <!-- Email View -->
-      <section class="col-md-6 p-3" id="emailView">
+      <section class="col-12 col-md-6 p-3" id="emailView">
         <h5 id="emailSubject">Select a message</h5>
         <p><strong id="emailSender"></strong></p>
         <p id="emailBody" class="mt-2 text-muted">Click on a message to read it here.</p>
@@ -109,7 +138,7 @@
           <input type="text" class="form-control mb-2" id="composeSubject" placeholder="Subject" required />
           <textarea class="form-control" rows="5" id="composeBody" placeholder="Message..." required></textarea>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 px-3">
           <label for="composeAttachment" class="form-label">Attachment</label>
           <input type="file" class="form-control" id="composeAttachment" accept="image/*,application/pdf,text/plain">
         </div>
