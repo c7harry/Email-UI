@@ -138,7 +138,7 @@ body.dark-mode #emailView {
 body.dark-mode #emailSubject,
 body.dark-mode #emailSender,
 body.dark-mode #emailBody {
-  color: #e4e4e4;
+  color: #e4e4e4 !important;
 }
 
 /* Compose modal */
